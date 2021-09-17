@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_bookmark_details.xml" value="0.1838768115942029" />
         <entry key="app/src/main/res/layout/content_bookmark_info.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/menu_bookmark_details.xml" value="0.2" />
       </map>
     </option>
   </component>
