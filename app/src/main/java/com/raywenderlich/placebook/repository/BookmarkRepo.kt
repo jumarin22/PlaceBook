@@ -8,13 +8,15 @@ import com.raywenderlich.placebook.db.BookmarkDao
 import com.raywenderlich.placebook.db.PlaceBookDatabase
 import com.raywenderlich.placebook.model.Bookmark
 
-class BookmarkRepo(context: Context) {
+class BookmarkRepo(private val context: Context) {
     private val db = PlaceBookDatabase.getInstance(context)
     private val bookmarkDao: BookmarkDao = db.bookmarkDao()
     private var categoryMap: HashMap<Place.Type, String> =
         buildCategoryMap()
     private var allCategories: HashMap<String, Int> =
         buildCategories()
+    val categories: List<String>
+        get() = ArrayList(allCategories.keys)
 
     fun addBookmark(bookmark: Bookmark): Long? {
         val newId = bookmarkDao.insertBookmark(bookmark)
@@ -78,5 +80,9 @@ class BookmarkRepo(context: Context) {
     }
     fun getCategoryResourceId(placeCategory: String): Int? {
         return allCategories[placeCategory]
+    }
+    fun deleteBookmark(bookmark: Bookmark) {
+        bookmark.deleteImage(context)
+        bookmarkDao.deleteBookmark(bookmark)
     }
 }
